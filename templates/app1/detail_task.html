@@ -1,0 +1,33 @@
+{% extends "app1/base.html" %}
+
+{% block content %}
+    <div class="row">
+            <div class="col-12">
+                <div class="task mb-4" style="justify-items: center; display: grid; justify-content: center;">
+                    <div class="task-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <h5 class="task-id">ID: {{task_id }}</h5>
+                            <table>
+                                {% for field in form %}
+                                <div class="fieldWrapper", style="width: 300px; display: grid">
+                                <b>{{ field.label }}:</b>{{ field }}
+                                </div>
+                                {% endfor %}
+                            </table>
+                            <br>
+                            <input class="btn btn-success btn-block" name="action" type="submit" value="Сохранить">
+                            <br>
+                            <input class="btn btn-danger btn-block" name="action" type="submit" value="Удалить">
+                            <br>
+                        </form>
+                        <a href="{% url 'view_tasks' %}">
+                            <input class="btn btn-primary btn-block" type="submit" value="Назад">
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endblock %}
+

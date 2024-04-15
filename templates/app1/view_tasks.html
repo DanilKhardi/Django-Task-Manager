@@ -1,0 +1,22 @@
+{% extends "app1/base.html" %}
+
+{% block content %}
+    <div class="row">
+        {% for key, value in my_tasks.items %}
+            <div class="col-12">
+                <div class="task mb-4" style="justify-items: center; display: grid; justify-content: center;">
+                    <div class="task-body", style="width: 300px; display: grid">
+                        <h5 class="task-id">ID: {{key }}</h5>
+                        <p class="task-summary">Тема: {{value.summary }}</p>
+                        <p class="task-priority">Приоритет: {{ value.priority }}</p>
+                        <p class="task-text">Описание: {{ value.description }}</p>
+                        <p class="task-created">Дата создания: {{ value.created_date }}</p>
+                        <p class="task-due">Срок исполнения: {{ value.due_date }}</p>
+                        <a href="{% url 'detail_task' key %}" class="btn btn-primary">Подробнее</a>
+                    </div>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
