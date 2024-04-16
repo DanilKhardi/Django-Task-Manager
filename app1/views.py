@@ -14,6 +14,12 @@ PRIORITY_CHOICES = {
 }
 
 
+def get_priority_id(d, value):
+    for k, v in d.items():
+        if v == value:
+            return k
+
+
 def index(request):
     return render(request, "app1/start_page.html")
 
@@ -71,7 +77,7 @@ def detail_task(request, task_id):
             if task != "Task not Found":
                 form = Task(initial={
                     'summary': task["summary"],
-                    'priority': task["priority"],
+                    'priority': get_priority_id(PRIORITY_CHOICES, task["priority"]),
                     'description': task['description'],
                     'due_date': datetime.datetime.strptime(task["due_date"], "%d-%m-%Y %H:%M"),
                 })
